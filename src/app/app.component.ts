@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
 
   onOpenModal() {
     this.dialog.open(ModalComponent, {
-      width: '300px',
+      width: '400px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
     });

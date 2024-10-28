@@ -1,11 +1,12 @@
 <div class="w-full h-full bg-semiLightYellow">
-  <div class="w-full flex justify-end pt-4 px-4">
+  <div class="w-full flex justify-between pt-4 px-4">
+    <p class="text-darkBrown font-bold text-2xl">Create a Character</p>
     <button mat-dialog-close class="text-darkBrown hover:text-darkYellow">
       <mat-icon>close</mat-icon>
     </button>
   </div>
 
-  <mat-dialog-content>
+  <div class="p-4">
     <form class="flex flex-col gap-2" #characterForm="ngForm">
       <div class="w-full h-fit flex flex-col">
         <label for="name" class="text-darkBrown text-base font-medium"
@@ -56,17 +57,44 @@
           } }
         </div>
       </div>
+
+      <label for="options" class="text-darkBrown text-base font-medium"
+        >Image</label
+      >
+      <div class="flex flex-wrap gap-4 justify-center">
+        @for (character of defaultCharacters ; track $index) {
+        <label
+          [for]="character.id"
+          class="text-darkBrown text-base font-medium"
+        >
+          <input
+            [id]="character.id"
+            type="radio"
+            name="options"
+            [value]="character.img"
+            class="peer hidden"
+            [(ngModel)]="form.img"
+            required
+          />
+          <img
+            [src]="character.img"
+            [alt]="character.name"
+            class="w-20 h-20 rounded-full bg-yellow-50 border-2 border-transparent peer-checked:border-yellow-500"
+          />
+        </label>
+        }
+      </div>
     </form>
-  </mat-dialog-content>
+  </div>
   <mat-dialog-actions>
     <button
       class="bg-yellow-100 px-4 py-2 rounded-3xl hover:bg-darkBrown hover:text-yellow-100 text-darkBrown disabled:opacity-50 disabled:bg-yellow-100 disabled:text-darkBrown"
       mat-button
       [disabled]="characterForm.invalid"
       (click)="onSubmit()"
+      mat-dialog-close
     >
-      <p class="font-semibold">Action</p>
+      <p class="font-semibold">Create</p>
     </button>
   </mat-dialog-actions>
 </div>
-<!-- mat-dialog-close -->
