@@ -1,42 +1,37 @@
-<div class="relative w-full h-screen">
-  <img
-    src="assets/app-background.jpg"
-    alt="app-background"
-    class="absolute inset-0 w-full h-full object-cover opacity-10"
-  />
-
-  <div class="absolute inset-0 bg-lightYellow opacity-50"></div>
-
-  <div class="relative z-10 text-center flex flex-col h-full">
-    <div class="bg-darkYellow border-b-8 border-semiLightYellow p-8">
-      <div class="flex justify-between -m-5">
-        <div
-          class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
-        ></div>
-        <div
-          class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
-        ></div>
-      </div>
-      <div class="p-5">
-        <h1 class="text-darkBrown text-5xl font-extrabold">
-          Characters Card App
-        </h1>
-        <p class="text-lightYellow font-semibold text-lg pt-1">
-          Create, Read, Update and Delete...
-        </p>
-      </div>
-      <div class="flex justify-between -m-5">
-        <div
-          class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
-        ></div>
-        <div
-          class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
-        ></div>
-      </div>
+<layout>
+  <!-- HEADER -->
+  <div class="bg-darkYellow border-b-8 border-semiLightYellow p-8">
+    <!-- BUTTON DETAILS -->
+    <div class="flex justify-between -m-5">
+      <div
+        class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
+      ></div>
+      <div
+        class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
+      ></div>
     </div>
-
-    <main class="flex-1 mt-4">
-      <card />
-    </main>
+    <!-- TEXT CONTENT HEADER -->
+    <div class="p-5">
+      <h1 class="text-darkBrown text-5xl font-extrabold">
+        Characters Card App
+      </h1>
+      <p class="text-lightYellow font-semibold text-lg pt-1">
+        Create, Read, Update and Delete...
+      </p>
+    </div>
+    <!-- BUTTON DETAILS -->
+    <div class="flex justify-between -m-5">
+      <div
+        class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
+      ></div>
+      <div
+        class="h-4 w-4 bg-semiLightYellow border-darkBrown border-2 rounded-full"
+      ></div>
+    </div>
   </div>
-</div>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 mt-4">
+    <card />
+  </main>
+</layout>
