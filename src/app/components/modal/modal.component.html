@@ -1,19 +1,72 @@
 <div class="w-full h-full bg-semiLightYellow">
-  <div class="w-full flex justify-end p-4">
+  <div class="w-full flex justify-end pt-4 px-4">
     <button mat-dialog-close class="text-darkBrown hover:text-darkYellow">
       <mat-icon>close</mat-icon>
     </button>
   </div>
+
   <mat-dialog-content>
-    <p>FORM</p>
+    <form class="flex flex-col gap-2" #characterForm="ngForm">
+      <div class="w-full h-fit flex flex-col">
+        <label for="name" class="text-darkBrown text-base font-medium"
+          >Name</label
+        >
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter the name"
+          class="px-4 py-2 rounded-lg border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:outline-none outline-none"
+          [(ngModel)]="form.name"
+          required
+          #name="ngModel"
+        />
+        <div class="w-full h-4">
+          @if (name.invalid && name.touched) { @if(name.errors!['required']){
+          <p class="text-xs text-red-600 absolute">Name is required</p>
+          } @if(name.errors!['minlength']){
+          <p class="text-xs text-red-600">Minimum length is not met</p>
+          } @if(name.errors!['maxlength']){
+          <p class="text-xs text-red-600">Maximum length is exceeded</p>
+          } }
+        </div>
+      </div>
+
+      <div class="w-full h-fit flex flex-col">
+        <label for="type" class="text-darkBrown text-base font-medium"
+          >Type</label
+        >
+        <input
+          type="text"
+          name="type"
+          id="type"
+          placeholder="Enter the type"
+          class="px-4 py-2 rounded-lg border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:outline-none outline-none"
+          [(ngModel)]="form.type"
+          required
+          #type="ngModel"
+        />
+        <div class="w-full h-4">
+          @if (type.invalid && type.touched) { @if(type.errors!['required']){
+          <p class="text-xs text-red-600 absolute">Type is required</p>
+          } @if(type.errors!['minlength']){
+          <p class="text-xs text-red-600">Minimum length is not met</p>
+          } @if(type.errors!['maxlength']){
+          <p class="text-xs text-red-600">Maximum length is exceeded</p>
+          } }
+        </div>
+      </div>
+    </form>
   </mat-dialog-content>
   <mat-dialog-actions>
     <button
-      class="bg-yellow-100 px-4 py-2 rounded-3xl hover:bg-darkBrown hover:text-yellow-100 text-darkBrown"
+      class="bg-yellow-100 px-4 py-2 rounded-3xl hover:bg-darkBrown hover:text-yellow-100 text-darkBrown disabled:opacity-50 disabled:bg-yellow-100 disabled:text-darkBrown"
       mat-button
-      mat-dialog-close
+      [disabled]="characterForm.invalid"
+      (click)="onSubmit()"
     >
       <p class="font-semibold">Action</p>
     </button>
   </mat-dialog-actions>
 </div>
+<!-- mat-dialog-close -->
