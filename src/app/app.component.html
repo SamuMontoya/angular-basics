@@ -1,8 +1,14 @@
 <layout>
   <header-component />
 
-  <!-- MAIN CONTENT -->
-  <main class="flex-1 mt-4">
-    <card />
+  <main
+    class="flex-1 mt-4 flex w-full flex-wrap gap-4 h-full overflow-scroll justify-center"
+  >
+    <card>
+      <mat-icon class="!w-24 !h-24 text-8xl">add</mat-icon>
+    </card>
+    @for (item of [0,1,2,3,4,5,6,7,8,9]; track $index) {
+    <card>{{ $index + 1 }}</card>
+    }
   </main>
 </layout>
