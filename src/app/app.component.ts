@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CharacterComponent } from './components/character/character.component';
 import { Character } from './models/Character';
 import { CharactersService } from './services/characters.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from './components/modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,15 @@ import { CharactersService } from './services/characters.service';
 export class AppComponent implements OnInit {
   characters!: Character[];
 
-  constructor(private service: CharactersService) {}
+  constructor(private service: CharactersService, public dialog: MatDialog) {}
+
+  onOpenModal() {
+    this.dialog.open(ModalComponent, {
+      width: '300px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+    });
+  }
 
   ngOnInit(): void {
     this.characters = this.service.findAll();
