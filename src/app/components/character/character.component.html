@@ -1,0 +1,21 @@
+<div class="w-full h-full pt-2 relative">
+  <div
+    class="absolute p-1 left-1/2 -translate-x-1/2 -top-0 rounded-md bg-yellow-50 flex justify-center items-center"
+  >
+    <div class="w-8 h-1 rounded-sm bg-darkBrown"></div>
+  </div>
+  <div
+    class="bg-semiLightYellow w-full px-2 h-24 rounded-lg flex justify-center items-end"
+  >
+    <img [src]="character.img" [alt]="character.name" class="w-24 h-24" />
+  </div>
+  <div class="flex flex-col p-2">
+    <div class="flex justify-between">
+      <p class="text-lg font-bold">{{ character.name }}</p>
+    </div>
+    <div class="flex justify-between">
+      <p class="italic text-base">{{ character.type }}</p>
+      <p class="text-xs self-end pb-1">{{ character.id }}</p>
+    </div>
+  </div>
+</div>
