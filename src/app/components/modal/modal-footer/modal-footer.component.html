@@ -1,0 +1,24 @@
+<mat-dialog-actions>
+  <div class="w-full flex justify-between">
+    @if (isEdit) {
+    <button
+      class="bg-red-500 px-4 py-2 rounded-3xl hover:bg-red-900 text-yellow-100 disabled:opacity-50"
+      mat-button
+      (click)="onDelete()"
+      mat-dialog-close
+    >
+      <p class="font-semibold">Delete</p>
+    </button>
+    }
+
+    <button
+      class="bg-yellow-100 px-4 py-2 rounded-3xl hover:bg-darkBrown hover:text-yellow-100 text-darkBrown disabled:opacity-50 disabled:bg-yellow-100 disabled:text-darkBrown"
+      mat-button
+      [disabled]="isInvalid"
+      (click)="onSubmit()"
+      mat-dialog-close
+    >
+      <p class="font-semibold">{{ isEdit ? "Edit" : "Create" }}</p>
+    </button>
+  </div>
+</mat-dialog-actions>

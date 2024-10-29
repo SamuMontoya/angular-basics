@@ -25,18 +25,29 @@ import { ModalComponent } from './components/modal/modal.component';
 })
 export class AppComponent implements OnInit {
   characters!: Character[];
+  editingCharacter!: Character;
 
   constructor(private service: CharactersService, public dialog: MatDialog) {}
 
-  onOpenModal() {
+  onOpenModal(id: number) {
+    if (id !== 0) {
+      this.editingCharacter = this.service.findById(id) as Character;
+    }
+
     this.dialog.open(ModalComponent, {
       width: '400px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
+      data: {
+        type: id === 0 ? 'create' : 'edit',
+        editingCharacter: this.editingCharacter,
+      },
     });
   }
 
-  ngOnInit(): void {
-    this.characters = this.service.findAll();
+  ngOnInit() {
+    this.service.characters$.subscribe((characters) => {
+      this.characters = characters;
+    });
   }
 }

@@ -1,14 +1,23 @@
 <div class="w-full h-full bg-semiLightYellow">
-  <div class="w-full flex justify-between pt-4 px-4">
-    <p class="text-darkBrown font-bold text-2xl">Create a Character</p>
-    <button mat-dialog-close class="text-darkBrown hover:text-darkYellow">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+  <!-- HEADER -->
+  <modal-header [type]="data.type" />
 
   <div class="p-4">
+    <!-- FORM -->
     <form class="flex flex-col gap-2" #characterForm="ngForm">
       <div class="w-full h-fit flex flex-col">
+        @if (data.type === 'edit') {
+        <div class="w-full flex flex-col items-center text-darkBrown pb-4">
+          <img
+            [src]="form.img"
+            [alt]="form.name"
+            class="w-28 h-28 rounded-full bg-yellow-200 border-2 border-transparent"
+          />
+          <p class="text-lg font-bold">{{ form.name }}</p>
+          <p class="italic text-base">{{ form.type }}</p>
+        </div>
+        }
+
         <label for="name" class="text-darkBrown text-base font-medium"
           >Name</label
         >
@@ -58,6 +67,8 @@
         </div>
       </div>
 
+      <!-- IMAGE SELECTOR -->
+      @if(data.type === 'create'){
       <label for="options" class="text-darkBrown text-base font-medium"
         >Image</label
       >
@@ -84,17 +95,15 @@
         </label>
         }
       </div>
+      }
     </form>
   </div>
-  <mat-dialog-actions>
-    <button
-      class="bg-yellow-100 px-4 py-2 rounded-3xl hover:bg-darkBrown hover:text-yellow-100 text-darkBrown disabled:opacity-50 disabled:bg-yellow-100 disabled:text-darkBrown"
-      mat-button
-      [disabled]="characterForm.invalid"
-      (click)="onSubmit()"
-      mat-dialog-close
-    >
-      <p class="font-semibold">Create</p>
-    </button>
-  </mat-dialog-actions>
+
+  <!-- FOOTER -->
+  <modal-footer
+    [isInvalid]="characterForm.invalid ?? true"
+    [isEdit]="data.type === 'edit'"
+    (submit)="onSubmit()"
+    (delete)="onDelete()"
+  />
 </div>

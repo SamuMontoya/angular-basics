@@ -5,13 +5,15 @@
     class="pt-4 flex w-full flex-wrap gap-4 h-fit overflow-scroll justify-center items-start"
   >
     <card>
-      <button class="w-full h-full" (click)="onOpenModal()">
+      <button class="w-full h-full" (click)="onOpenModal(0)">
         <mat-icon class="!w-24 !h-24 text-8xl">add</mat-icon>
       </button>
     </card>
     @for (character of characters; track $index) {
     <card>
-      <character [character]="character" />
+      <button (click)="onOpenModal(character.id)">
+        <character [character]="character" />
+      </button>
     </card>
     }
   </main>
