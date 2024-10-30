@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'modal-footer',
   standalone: true,
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, CommonModule],
   templateUrl: './modal-footer.component.html',
 })
 export class ModalFooterComponent {

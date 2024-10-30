@@ -1,10 +1,13 @@
 <mat-dialog-actions>
-  <div class="w-full flex justify-between">
+  <div
+    class="w-full flex"
+    [ngClass]="isEdit ? 'justify-between' : 'justify-end'"
+  >
     @if (isEdit) {
     <button
       class="bg-red-500 px-4 py-2 rounded-3xl hover:bg-red-900 text-yellow-100 disabled:opacity-50"
       mat-button
-      (click)="onDelete()"
+      (click)="onSubmit()"
       mat-dialog-close
     >
       <p class="font-semibold">Delete</p>

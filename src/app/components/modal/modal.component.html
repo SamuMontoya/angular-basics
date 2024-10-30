@@ -18,92 +18,104 @@
         </div>
         }
 
-        <label for="name" class="text-darkBrown text-base font-medium"
-          >Name</label
-        >
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Enter the name"
-          class="px-4 py-2 rounded-lg border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:outline-none outline-none"
-          [(ngModel)]="form.name"
-          required
-          #name="ngModel"
-        />
-        <div class="w-full h-4">
-          @if (name.invalid && name.touched) { @if(name.errors!['required']){
-          <p class="text-xs text-red-600 absolute">Name is required</p>
-          } @if(name.errors!['minlength']){
-          <p class="text-xs text-red-600">Minimum length is not met</p>
-          } @if(name.errors!['maxlength']){
-          <p class="text-xs text-red-600">Maximum length is exceeded</p>
-          } }
-        </div>
-      </div>
-
-      <div class="w-full h-fit flex flex-col">
-        <label for="type" class="text-darkBrown text-base font-medium"
-          >Type</label
-        >
-        <input
-          type="text"
-          name="type"
-          id="type"
-          placeholder="Enter the type"
-          class="px-4 py-2 rounded-lg border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:outline-none outline-none"
-          [(ngModel)]="form.type"
-          required
-          #type="ngModel"
-        />
-        <div class="w-full h-4">
-          @if (type.invalid && type.touched) { @if(type.errors!['required']){
-          <p class="text-xs text-red-600 absolute">Type is required</p>
-          } @if(type.errors!['minlength']){
-          <p class="text-xs text-red-600">Minimum length is not met</p>
-          } @if(type.errors!['maxlength']){
-          <p class="text-xs text-red-600">Maximum length is exceeded</p>
-          } }
-        </div>
-      </div>
-
-      <!-- IMAGE SELECTOR -->
-      @if(data.type === 'create'){
-      <label for="options" class="text-darkBrown text-base font-medium"
-        >Image</label
-      >
-      <div class="flex flex-wrap gap-4 justify-center">
-        @for (character of defaultCharacters ; track $index) {
-        <label
-          [for]="character.id"
-          class="text-darkBrown text-base font-medium"
-        >
+        <div class="w-full h-fit flex flex-col">
+          <label for="type" class="text-darkBrown text-base font-medium"
+            >Name</label
+          >
           <input
-            [id]="character.id"
-            type="radio"
-            name="options"
-            [value]="character.img"
-            class="peer hidden"
-            [(ngModel)]="form.img"
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter the name"
+            class="px-4 py-2 rounded-lg border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:outline-none outline-none"
+            [(ngModel)]="form.name"
             required
+            maxlength="6"
+            pattern="^(?!\s*$)[a-zA-Z\s]+$"
+            #name="ngModel"
           />
-          <img
-            [src]="character.img"
-            [alt]="character.name"
-            class="w-20 h-20 rounded-full bg-yellow-50 border-2 border-transparent peer-checked:border-yellow-500"
+          <div class="w-full h-4">
+            @if (name.invalid && name.touched) { @if (name.errors!['required'])
+            {
+            <p class="text-xs text-red-600 absolute">Name is required</p>
+            } @if (name.errors!['maxlength']) {
+            <p class="text-xs text-red-600">Maximum length is 6 characters</p>
+            } @if (name.errors!['pattern']) {
+            <p class="text-xs text-red-600">
+              No special characters or empty spaces allowed
+            </p>
+            } }
+          </div>
+        </div>
+
+        <div class="w-full h-fit flex flex-col">
+          <label for="type" class="text-darkBrown text-base font-medium"
+            >Type</label
+          >
+          <input
+            type="text"
+            name="type"
+            id="type"
+            placeholder="Enter the type"
+            class="px-4 py-2 rounded-lg border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:outline-none outline-none"
+            [(ngModel)]="form.type"
+            required
+            maxlength="6"
+            pattern="^(?!\s*$)[a-zA-Z\s]+$"
+            #type="ngModel"
           />
-        </label>
+          <div class="w-full h-4">
+            @if (type.invalid && type.touched) { @if (type.errors!['required'])
+            {
+            <p class="text-xs text-red-600 absolute">Type is required</p>
+            } @if (type.errors!['maxlength']) {
+            <p class="text-xs text-red-600">Maximum length is 6 characters</p>
+            } @if (type.errors!['pattern']) {
+            <p class="text-xs text-red-600">
+              No special characters or empty spaces allowed
+            </p>
+            } }
+          </div>
+        </div>
+
+        <!-- IMAGE SELECTOR -->
+        @if(data.type === 'create'){
+        <label for="options" class="text-darkBrown text-base font-medium"
+          >Image</label
+        >
+        <div class="flex flex-wrap gap-4 justify-center">
+          @for (character of defaultCharacters ; track $index) {
+          <label
+            [for]="character.id"
+            class="text-darkBrown text-base font-medium"
+          >
+            <input
+              [id]="character.id"
+              type="radio"
+              name="options"
+              [value]="character.img"
+              class="peer hidden"
+              [(ngModel)]="form.img"
+              required
+            />
+            <img
+              [src]="character.img"
+              [alt]="character.name"
+              class="w-20 h-20 rounded-full bg-yellow-50 border-2 border-transparent peer-checked:border-yellow-500"
+            />
+          </label>
+          }
+        </div>
         }
       </div>
-      }
     </form>
-  </div>
 
-  <!-- FOOTER -->
-  <modal-footer
-    [isInvalid]="characterForm.invalid ?? true"
-    [isEdit]="data.type === 'edit'"
-    (submit)="onSubmit()"
-    (delete)="onDelete()"
-  />
+    <!-- FOOTER -->
+    <modal-footer
+      [isInvalid]="characterForm.invalid ?? true"
+      [isEdit]="data.type === 'edit'"
+      (submit)="onSubmit()"
+      (delete)="onDelete()"
+    />
+  </div>
 </div>
